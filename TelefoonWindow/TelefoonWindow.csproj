@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CFCC7977-43E2-452B-968D-9A5D5E9466EE}</ProjectGuid>
+    <ProjectGuid>{443C84FB-5F3E-48E9-B5B8-F93CF535095B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ButtonGebruik</RootNamespace>
-    <AssemblyName>ButtonGebruik</AssemblyName>
+    <RootNamespace>TelefoonWindow</RootNamespace>
+    <AssemblyName>TelefoonWindow</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -69,6 +69,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Persoon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -96,7 +97,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\bold.png" />
+    <Resource Include="images\anne.jpg" />
+    <Resource Include="images\bob.jpg" />
+    <Resource Include="images\collega1.jpg" />
+    <Resource Include="images\collega2.jpg" />
+    <Resource Include="images\collega3.jpg" />
+    <Resource Include="images\ed.jpg" />
+    <Resource Include="images\grotezus.jpg" />
+    <Resource Include="images\kleinezus.jpg" />
+    <Content Include="images\PHONE.wav" />
+    <Resource Include="images\tantenon.jpg" />
+    <Resource Include="images\telefoon2.jpg" />
+    <Resource Include="images\vader.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

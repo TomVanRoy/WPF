@@ -1,0 +1,41 @@
+﻿<Window x:Class="BestelbonPizza.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BestelbonPizza"
+        mc:Ignorable="d"
+        Title="PizzaBestelbon" Height="350" Width="525">
+    <StackPanel Margin="5">
+        <TextBlock x:Name="TextTitel" HorizontalAlignment="Center" FontSize="25">Pizza bestellen</TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Name="boxen" Width="280" Margin="5">
+                <RadioButton GroupName="size" Margin="2" x:Name="small" VerticalAlignment="Center" IsChecked="False" Content="small"></RadioButton>
+                <RadioButton GroupName="size" Margin="2" x:Name="medium" VerticalAlignment="Center" IsChecked="False" Content="medium"></RadioButton>
+                <RadioButton GroupName="size" Margin="2" x:Name="large" VerticalAlignment="Center" IsChecked="True" Content="large"></RadioButton>
+                <Rectangle Height="1" Fill="Black" ></Rectangle>
+                <CheckBox x:Name="tomaat" VerticalAlignment="Center" Margin="2" IsChecked="True" IsEnabled="False" Content="tomaat"></CheckBox>
+                <CheckBox x:Name="kaas" VerticalAlignment="Center" Margin="2" IsChecked="True" IsEnabled="False" Content="kaas"></CheckBox>
+                <CheckBox x:Name="ham" VerticalAlignment="Center" Margin="2" Content="ham"></CheckBox>
+                <CheckBox x:Name="ananas" VerticalAlignment="Center" Margin="2" Content="ananas"></CheckBox>
+                <CheckBox x:Name="salami" VerticalAlignment="Center" Margin="2" Content="salami"></CheckBox>
+            </StackPanel>
+            <StackPanel Width="217">
+                <ToggleButton x:Name="ButtonKorst" Content="extra dikke korst" Margin="5"></ToggleButton>
+                <ToggleButton x:Name="ButtonKaas" Content="extra kaas" Margin="5" Checked="ButtonKaas_Checked"></ToggleButton>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="TextHoeveelheid" VerticalAlignment="Center">hoeveelheid:</TextBlock>
+                    <TextBlock x:Name="TextAantal" VerticalAlignment="Center" Margin="15 0">1</TextBlock>
+                    <StackPanel>
+                        <Button x:Name="ButtonPlus" Content="+" Click="ButtonPlus_Click"></Button>
+                        <Button x:Name="ButtonMinus" Content="-" Click="ButtonMinus_Click"></Button>
+                    </StackPanel>
+                </StackPanel>
+                <Button x:Name="ButtonBestellen" Margin="10" Click="ButtonBestellen_Click">
+                    <Label x:Name="LabelBestellen">BESTELLEN</Label>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <TextBlock x:Name="TextResult">U heeft</TextBlock>
+    </StackPanel>
+</Window>
