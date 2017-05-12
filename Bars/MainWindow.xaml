@@ -3,30 +3,100 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:custom="clr-namespace:Bars"
         xmlns:local="clr-namespace:Bars"
         mc:Ignorable="d"
-        Title="Werken met Bars" Height="350" Width="525">
+        Title="Werken met Bars" Height="350" Width="525" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Window.CommandBindings>
+        <CommandBinding Command="Save" Executed="SaveExecuted"/>
+        <CommandBinding Command="Open" Executed="OpenExecuted"/>
+        <CommandBinding Command="Print" Executed="PrintExecuted"/>
+        <CommandBinding Command="PrintPreview" Executed="PrintPreviewExecuted"/>
+        <CommandBinding Command="Close" Executed="CloseExecuted"/>
+        <CommandBinding Command="{x:Static custom:BarWindow.mijnRouteCtrlB}" Executed="ctrlBExecuted" />
+        <CommandBinding Command="{x:Static custom:BarWindow.mijnRouteCtrlI}" Executed="ctrlIExecuted" />
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="B" Modifiers="Control" Command="{x:Static custom:BarWindow.mijnRouteCtrlB}"/>
+        <KeyBinding Key="I" Modifiers="Control" Command="{x:Static custom:BarWindow.mijnRouteCtrlI}"/>
+    </Window.InputBindings>
     <DockPanel>
         <Menu Height="24" Name="MenuBalk" DockPanel.Dock="Top">
-            <MenuItem Header="Editeren">
-                <MenuItem Header="Knippen" Command="Cut"></MenuItem>
-                <MenuItem Header="Kopiëren" Command="Copy"></MenuItem>
-                <MenuItem Header="Plakken" Command="Paste"></MenuItem>
+            <MenuItem Header="_Bestand">
+                <MenuItem Header="_Openen" Command="Open"/>
+                <MenuItem Header="O_pslaan" Command="Save"/>
+                <MenuItem Header="Opslaan als ..." Command="SaveAs"/>
+                <MenuItem Header="Afdrukvoorbeeld" Command="PrintPreview"/>
+                <Separator/>
+                <MenuItem Header="_Afdrukken" Command="Print"/>
             </MenuItem>
-            <MenuItem Header="Lettertype">
+            <MenuItem Header="Editeren">
+                <MenuItem Header="Knippen" Command="Cut"/>
+                <MenuItem Header="Kopiëren" Command="Copy"/>
+                <MenuItem Header="Plakken" Command="Paste"/>
+            </MenuItem>
+            <MenuItem Header="_Lettertype">
                 <MenuItem Name="Fontjes" Header="Font">
-                    <MenuItem Name="Courier" Header="Courier New" IsCheckable="True" Click="Lettertype_Click"></MenuItem>
-                    <MenuItem Name="Arial" Header="Arial" IsCheckable="True" Click="Lettertype_Click"></MenuItem>
-                    <MenuItem Name="Comic" Header="Comic Sans MS" IsCheckable="True" Click="Lettertype_Click"></MenuItem>
-                    <MenuItem Name="Veranda" Header="Veranda" IsCheckable="True" Click="Lettertype_Click"></MenuItem>
+                    <MenuItem Name="Courier" Header="Courier New" IsCheckable="True" Click="Lettertype_Click"/>
+                    <MenuItem Name="Arial" Header="Arial" IsCheckable="True" Click="Lettertype_Click"/>
+                    <MenuItem Name="Comic" Header="Comic Sans MS" IsCheckable="True" Click="Lettertype_Click"/>
+                    <MenuItem Name="Verdana" Header="Verdana" IsCheckable="True" Click="Lettertype_Click"/>
                 </MenuItem>
-                <MenuItem Name="MenuVet" Header="Vetdruk" IsCheckable="True" InputGestureText="Ctrl+B" Click="MenuVet_Click"></MenuItem>
-                <MenuItem Name="MenuSchuin" Header="Schuindruk" IsCheckable="True" InputGestureText="Ctrl+I" Click="MenuSchuin_Click"></MenuItem>
+                <MenuItem Name="MenuVet" Header="_Vetdruk" IsCheckable="True" InputGestureText="Ctrl+B" Click="MenuVet_Click"/>
+                <MenuItem Name="MenuSchuin" Header="_Schuindruk" IsCheckable="True" InputGestureText="Ctrl+I" Click="MenuSchuin_Click"/>
             </MenuItem>
         </Menu>
-        <ToolBarTray Height="24" DockPanel.Dock="Top"></ToolBarTray>
-        <StatusBar DockPanel.Dock="Bottom" Height="24"></StatusBar>
-        <TextBox Name="TextBoxVoorbeeld" Text="Dit is voorbeeldtekst" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="24" TextWrapping="Wrap" MaxWidth="600" MaxHeight="900">
+        <ToolBarTray Height="24" DockPanel.Dock="Top">
+            <ToolBar Name="BestandBalk">
+                <Button Command="Close">
+                    <Image Height="15" Source="images\afsluiten.png"/>
+                </Button>
+                <Button Command="Open">
+                    <Image Height="15" Source="images\open.png"/>
+                </Button>
+                <Button Command="Save">
+                    <Image Height="15" Source="images\save.png"/>
+                </Button>
+                <Button Command="PrintPreview">
+                    <Image Height="15" Source="images\preview.png"/>
+                </Button>
+                <Button Command="Print">
+                    <Image Height="15" Source="images\print.png"/>
+                </Button>
+            </ToolBar>
+            <ToolBar Name="EditeerBalk">
+                <Button Command="Cut">
+                    <Image Source="images\cut.png"/>
+                </Button>
+                <Button Command="Copy">
+                    <Image Source="images\copy.png"/>
+                </Button>
+                <Button Command="Paste">
+                    <Image Source="images\paste.png"/>
+                </Button>
+            </ToolBar>
+            <ToolBar Name="LettertypeBalk">
+                <ToggleButton Name="ButtonVet" Click="MenuVet_Click">
+                    <Image Source="images\bold.png"/>
+                </ToggleButton>
+                <ToggleButton Name="ButtonSchuin" Click="MenuSchuin_Click">
+                    <Image Source="images\italic.png"/>
+                </ToggleButton>
+                <ComboBox Name="LettertypeComboBox" Width="150" ItemsSource="{Binding Source={x:Static Member=Fonts.SystemFontFamilies}}" SelectionChanged="LettertypeComboBox_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock FontFamily="{Binding}" Text="{Binding}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </ToolBar>
+        </ToolBarTray>
+        <StatusBar DockPanel.Dock="Bottom" Height="24">
+            <StatusBarItem Name="StatusVet" DockPanel.Dock="Right" Width="50" HorizontalAlignment="Right" Content="Vet" FontWeight="{Binding ElementName=TextBoxVoorbeeld,Path=FontWeight}"/>
+            <StatusBarItem Name="StatusSchuin" DockPanel.Dock="Right" Width="50" HorizontalAlignment="Right" Content="Schuin" FontStyle="{Binding ElementName=TextBoxVoorbeeld, Path=FontStyle}"/>
+            <StatusBarItem Name="StatusLettertype" Content="{Binding ElementName=LettertypeComboBox, Path=SelectedItem}"/>
+        </StatusBar>
+        <TextBox Name="TextBoxVoorbeeld" Text="Dit is voorbeeldtekst" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="24" TextWrapping="Wrap" MaxWidth="600" MaxHeight="900" FontFamily="{Binding ElementName=LettertypeComboBox, Path=SelectedValue}">
         </TextBox>
     </DockPanel>
 </Window>
