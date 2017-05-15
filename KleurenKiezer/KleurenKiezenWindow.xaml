@@ -1,37 +1,54 @@
 ﻿<Window x:Class="KleurenKiezer.KleurenKiezenWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Kleuren kiezen" Height="350" Width="525" Background="Gray">
+        Title="Kleuren kiezen" Height="350" Background="Gray" Width="520">
+    <Window.Resources>
+        <ControlTemplate x:Key="kleurknop" TargetType="{x:Type Button}">
+            <Grid Height="30" Width="80">
+                <Ellipse Width="80" Height="30" Fill="{StaticResource zwartwit}" Stroke="Black"/>
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
     <StackPanel Orientation="Horizontal">
-        <StackPanel Orientation="Vertical" Height="300" Width="300" Margin="0,10">
+        <StackPanel Orientation="Vertical" Height="300" Margin="0,10">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Border Height="20" Width="20">
                     <Rectangle Height="20" Width="20" Fill="Red"/>
                 </Border>
-                <Slider Height="23" Name="sliderRed" Width="100" Minimum="0" Maximum="255" Margin="10" SmallChange="1" IsSnapToTickEnabled="True" Value="0"/>
-                <Label Name="labelRed" VerticalAlignment="Center" Width="50" Content="{Binding ElementName=sliderRed, Path=Value}"/>
+                <Slider Height="23" Width="100" Minimum="0" Maximum="255" Margin="10" SmallChange="1" IsSnapToTickEnabled="True" Value="0" Name="sliderRed"/>
+                <Label Name="labelRed" Content="{Binding ElementName=sliderRed, Path=Value}" Width="50"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Border Height="20" Width="20">
                     <Rectangle Height="20" Width="20" Fill="Green"/>
                 </Border>
-                <Slider Height="23" Name="sliderGreen" Width="100" Minimum="0" Maximum="255" Margin="10" SmallChange="1" IsSnapToTickEnabled="True" Value="0" />
-                <Label Name="labelGreen" VerticalAlignment="Center" Width="50" Content="{Binding ElementName=sliderGreen, Path=Value}"/>
+                <Slider Height="23" Width="100" Minimum="0" Maximum="255" Margin="10" SmallChange="1" IsSnapToTickEnabled="True" Value="0" Name="sliderGreen"/>
+                <Label Name="labelGreen" Content="{Binding ElementName=sliderGreen, Path=Value}" Width="50"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Border Height="20" Width="20">
                     <Rectangle Height="20" Width="20" Fill="Blue"/>
                 </Border>
-                <Slider Height="23" Name="sliderBlue" Width="100" Minimum="0" Maximum="255" Margin="10" SmallChange="1" IsSnapToTickEnabled="True" Value="0" />
-                <Label Name="labelBlue" VerticalAlignment="Center" Width="50" Content="{Binding ElementName=sliderBlue, Path=Value}" />
+                <Slider Height="23" Width="100" Minimum="0" Maximum="255" Margin="10" SmallChange="1" IsSnapToTickEnabled="True" Value="0" Name="sliderBlue"/>
+                <Label Name="labelBlue" Content="{Binding ElementName=sliderBlue, Path=Value}" Width="50"/>
             </StackPanel>
-            <ComboBox Name="comboBoxKleuren" Margin="10,30" DisplayMemberPath="Naam" SelectedValuePath="Naam"/>
+            <ComboBox Name="comboBoxKleuren" Margin="10,30">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="{Binding Path=Naam}" Stroke="Black" StrokeThickness="2" Height="25" Width="50"></Rectangle>
+                            <Label Content="{Binding Path=Naam}" Foreground="Black" Width="auto"></Label>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
-                    <RadioButton Name="radioVoorgrond" Content="Voorgrond in RGB" Margin="10" IsChecked="True"/>
-                    <RadioButton Name="radioAchtergrond" Content="Achtergrond in Colorname" Margin="10,0"/>
+                    <RadioButton Name="radioVoorgrond" Content="Voorgrond in RGB" IsChecked="True"/>
+                    <RadioButton Name="radioAchtergrond" Content="Achtergrond in Colorname"/>
                 </StackPanel>
-                <Button Name="buttonKleur" Margin="10" Height="30" Width="80" Content="Pas kleur toe" Click="buttonKleur_Click"/>
+                <Button Name="buttonKleur" Margin="10" Height="30" Width="80" Content="Pas kleur toe" Click="buttonKleur_Click" ></Button>
             </StackPanel>
         </StackPanel>
         <StackPanel Height="300" Width="200" Name="panelVoorbeeld">

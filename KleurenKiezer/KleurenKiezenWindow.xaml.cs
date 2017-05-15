@@ -45,7 +45,7 @@ namespace KleurenKiezer
 
         private void buttonKleur_Click(object sender, RoutedEventArgs e)
         {
-            if (radioVoorgrond.IsChecked==true)
+            if (radioVoorgrond.IsChecked == true)
             {
                 rechthoek.Fill = new SolidColorBrush(Color.FromRgb(
                     Convert.ToByte(labelRed.Content.ToString()),
@@ -61,7 +61,7 @@ namespace KleurenKiezer
                     }
                 }
             }
-            if ((radioAchtergrond.IsChecked == true) && (comboBoxKleuren.SelectedIndex>=0))
+            if ((radioAchtergrond.IsChecked == true) && (comboBoxKleuren.SelectedIndex >= 0))
             {
                 Kleur gekozenKleur = (Kleur)comboBoxKleuren.SelectedItem;
                 panelVoorbeeld.Background = gekozenKleur.Borstel;

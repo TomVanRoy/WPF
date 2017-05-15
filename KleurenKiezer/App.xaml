@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources\Turquoise.xaml"/>
                 <ResourceDictionary Source="Resources\Regenboog.xaml"/>
+                <ResourceDictionary Source="Resources\ShinyRed.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
