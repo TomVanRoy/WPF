@@ -7,6 +7,5 @@
         mc:Ignorable="d"
         Title="PrintPreview" Height="320" Width="640">
     <DocumentViewer Name="printpreview">
-
     </DocumentViewer>
 </Window>

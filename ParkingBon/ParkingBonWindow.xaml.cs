@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,8 @@ namespace ParkingBon
     /// </summary>
     public partial class ParkingBonWindow : Window
     {
+        private double vertPositie;
+
         public ParkingBonWindow()
         {
             InitializeComponent();
@@ -134,19 +137,42 @@ namespace ParkingBon
             preview.ShowDialog();
         }
 
-
         private FixedDocument StelAfdrukSamen()
         {
             FixedDocument document = new FixedDocument();
-            document.DocumentPaginator.PageSize = new System.Windows.Size(A4breedte, A4hoogte);
+            document.DocumentPaginator.PageSize = new System.Windows.Size(640, 320);
+
             PageContent inhoud = new PageContent();
             document.Pages.Add(inhoud);
+
             FixedPage page = new FixedPage();
             inhoud.Child = page;
+
             page.Width = 640;
             page.Height = 320;
+            vertPositie = 96;
+
+            Image image = new Image();
+            image.Source = logoImage.Source;
+            image.Margin = new Thickness(96);
+            page.Children.Add(image);
+
+            page.Children.Add(Regel("datum: " + DatumBon.SelectedDate.Value.ToLongDateString()));
+            page.Children.Add(Regel("starttijd: " + AankomstLabelTijd.Content.ToString()));
+            page.Children.Add(Regel("eindtijd: " + VertrekLabelTijd.Content.ToString()));
+            page.Children.Add(Regel("bedrag betaald: " + TeBetalenLabel.Content.ToString()));
             return document;
         }
+
+        private TextBlock Regel(string tekst)
+        {
+            TextBlock deRegel = new TextBlock();
+            deRegel.Text = tekst;
+            deRegel.Margin = new Thickness(300, vertPositie, 0, 0);
+            vertPositie += 30;
+            return deRegel;
+        }
+
 
         private void CloseExecuted(object sender, ExecutedRoutedEventArgs e)
         {
