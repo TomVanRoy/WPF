@@ -1,0 +1,40 @@
+﻿<Window x:Class="RegenboogDragDrop.WindowRegenboog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WindowRegenboog" Height="350" Width="525">
+    <Window.Resources>
+        <Style TargetType="{x:Type Rectangle}">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Stroke" Value="Black"/>
+            <Setter Property="StrokeThickness" Value="3"/>
+            <EventSetter Event="MouseMove" Handler="Rectangle_MouseMove"/>
+            <EventSetter Event="DragEnter" Handler="Rectangle_DragEnter"/>
+            <EventSetter Event="DragLeave" Handler="Rectangle_DragLeave"/>
+            <EventSetter Event="Drop" Handler="Rectangle_Drop"/>
+            <Setter Property="AllowDrop" Value="True"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <StackPanel Name="PickZone" Margin="0,50" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Rectangle Fill="Yellow"/>
+            <Rectangle Fill="Orange"/>
+            <Rectangle Fill="Red"/>
+            <Rectangle Fill="Blue"/>
+            <Rectangle Fill="Green"/>
+            <Rectangle Fill="Violet"/>
+            <Rectangle Fill="Indigo"/>
+        </StackPanel>
+        <StackPanel Name="DropZone" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Rectangle Name="dropRed" Fill="White"/>
+            <Rectangle Name="dropOrange" Fill="White"/>
+            <Rectangle Name="dropYellow" Fill="White"/>
+            <Rectangle Name="dropGreen" Fill="White"/>
+            <Rectangle Name="dropBlue" Fill="White"/>
+            <Rectangle Name="dropIndigo" Fill="White"/>
+            <Rectangle Name="dropViolet" Fill="White"/>
+        </StackPanel>
+        <Button Name="ButtonCheck" Content="Check volgorde" Margin="5,50" Click="ButtonCheck_Click"></Button>
+    </StackPanel>
+</Window>

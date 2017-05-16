@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{98323751-5635-49FC-A36E-50CA39264847}</ProjectGuid>
+    <ProjectGuid>{A0C22749-D00C-49AB-8769-8365E567F976}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataBinding</RootNamespace>
-    <AssemblyName>DataBinding</AssemblyName>
+    <RootNamespace>Bloemsamenstelling</RootNamespace>
+    <AssemblyName>Bloemsamenstelling</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -59,12 +59,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Kleur.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataBindingWindow.xaml.cs">
-      <DependentUpon>DataBindingWindow.xaml</DependentUpon>
+    <Compile Include="BloemWindow.xaml.cs">
+      <DependentUpon>BloemWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Persoon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -92,15 +92,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="DataBindingWindow.xaml">
+    <Page Include="BloemWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Stijlen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ShinyRed.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\font.ico" />
-    <Resource Include="Resources\font.png" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

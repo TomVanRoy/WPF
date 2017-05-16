@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{98323751-5635-49FC-A36E-50CA39264847}</ProjectGuid>
+    <ProjectGuid>{43A6E864-F8CE-487E-8E11-E096A558236D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataBinding</RootNamespace>
-    <AssemblyName>DataBinding</AssemblyName>
+    <RootNamespace>RegenboogDragDrop</RootNamespace>
+    <AssemblyName>RegenboogDragDrop</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -59,12 +59,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="RegenboogWindow.xaml.cs">
+      <DependentUpon>RegenboogWindow.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataBindingWindow.xaml.cs">
-      <DependentUpon>DataBindingWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Persoon.cs" />
+    <Compile Include="OfficeProgramma.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -92,14 +92,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="DataBindingWindow.xaml">
+    <Page Include="RegenboogWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\font.ico" />
-    <Resource Include="Resources\font.png" />
+    <Resource Include="office\access.png" />
+    <Resource Include="office\excel.png" />
+    <Resource Include="office\groove.png" />
+    <Resource Include="office\infopath.png" />
+    <Resource Include="office\onenote.png" />
+    <Resource Include="office\outlook.png" />
+    <Resource Include="office\powerpoint.png" />
+    <Resource Include="office\publisher.png" />
+    <Resource Include="office\word.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
